@@ -1,0 +1,45 @@
+*{
+    text-align: center;
+}
+h1{
+    font-size:42px;
+}
+input{
+    height:30px;
+    width:300px;
+    border-radius:10px;
+    box-shadow: 0 0 4px 4px rgba(0,0,0,0.1);
+}
+#addBtn{
+    height:30px;
+    width:100px;
+    border-radius:10px;
+    color:white;
+    background-color: cadetblue;
+}
+.toggleBtn,.delBtn{
+    height:30px;
+    width:150px;
+    margin-left:30px;
+    border-radius: 10px;
+    background-color: cadetblue;
+    color:white;
+
+}
+#topicList{
+    font-weight:200px;
+    font-size:20px;
+}
+.progress_container{
+    height:20px;
+    width:300px;
+    border-radius: 10px;
+    border:1px solid black;
+    margin-bottom:30px;
+}
+#progress_bar{
+    height:100%;
+    width:0%;
+    border-radius: 10px;
+    background-color: bisque;
+}
