@@ -1,83 +1,100 @@
-const addBtn=document.getElementById("addBtn")
-const topicList=document.getElementById("topicList")
+//progress bar, local storage
+
+
+
 const topicInput=document.getElementById("topicInput")
-const progress_tracker=document.getElementById("progress_tracker")
+const topicList=document.getElementById("topicList")
+const addBtn=document.getElementById("addBtn")
+const completed=document.getElementById("completed")
 const percentage=document.getElementById("percentage")
-const progress_container=document.getElementsByClassName("progress_container")
+const progress_bar_container=document.getElementById("progress_bar_container")
 const progress_bar=document.getElementById("progress_bar")
-let topics=JSON.parse(localStorage.getItem("topics")) || []
 let totalTopics=0
 let completedTopics=0
+let topics=JSON.parse(localStorage.getItem("topics")) || []
+
 function updateProgress(){
-    progress_tracker.textContent=`Completed: ${completedTopics}/${totalTopics}`
-    percentage.textContent=`${Math.round((completedTopics/totalTopics)*100)}%`
+    if(totalTopics===0){
+        completed.textContent="Completed: 0/0"
+        percentage.textContent="Percentage: 0%"
+        progress_bar.style.width="0%"
+        return
+    }
+    completed.textContent=`Completed: ${completedTopics}/${totalTopics}`
+    percentage.textContent=`Percentage: ${Math.round((completedTopics/totalTopics)*100)} %`
     progress_bar.style.width=`${Math.round((completedTopics/totalTopics)*100)}%`
 }
-function createTopic(topicName,isCompleted){
-        const newTopic=document.createElement("p")
-        
+function createTopic(newTopic,isCompleted){
+    totalTopics++
+    
+    const topicName=document.createElement("p")
+    topicName.textContent=newTopic;
 
-        const toggleBtn=document.createElement("button")
-        toggleBtn.textContent="Complete"
-        if(isCompleted){
-            newTopic.style.textDecoration="line-through"
-            toggleBtn.textContent="Undo"
+    const delBtn=document.createElement("button")
+    delBtn.textContent="Delete"
+    topicName.appendChild(delBtn)
+    delBtn.className="delBtn"
+
+    const toggleBtn=document.createElement("button")
+    toggleBtn.className="toggleBtn"
+    toggleBtn.textContent="Complete"
+    topicName.appendChild(toggleBtn)
+
+    topicList.appendChild(topicName)
+    if(isCompleted){
+        topicName.style.textDecoration="line-through"
+        toggleBtn.textContent="Undo"
+        completedTopics++ 
+        // completedTopics++
+    }
+    updateProgress()
+
+    delBtn.addEventListener("click",function(){
+        
+        if(toggleBtn.textContent==="Undo"){
+            completedTopics--   
         }
-        const delBtn=document.createElement("button")
-        toggleBtn.className="toggleBtn"
-        // toggleBtn.textContent="Complete"
-        delBtn.textContent="Delete"
-        delBtn.className="delBtn"
+        topics=topics.filter(
+            topic=> topic.name!==newTopic
+        )
+        localStorage.setItem("topics",JSON.stringify(topics))
+        topicName.remove()
+        totalTopics--
+        updateProgress()
+    })
 
-
-        newTopic.textContent=topicName
-        newTopic.appendChild(toggleBtn)
-        newTopic.appendChild(delBtn)
-
-
-        toggleBtn.addEventListener("click",function(){
-            if(toggleBtn.textContent==="Undo"){
-                newTopic.style.textDecoration="none"
-                isComplete=false
-                toggleBtn.textContent="Complete"
-                completedTopics--
-                const topicObj=topics.find(
-                    topic=>topic.name===topicName
-                )
-                topicObj.completed=false;
-                localStorage.setItem("topics",JSON.stringify(topics))
-                updateProgress()
-            }else{
-                newTopic.style.textDecoration="line-through"
-                isComplete=true
-                toggleBtn.textContent="Undo"
-                completedTopics++
-                const topicObj=topics.find(
-                    topic=>topic.name===topicName
-                )
-                topicObj.completed=true;
-                localStorage.setItem("topics",JSON.stringify(topics))
-                updateProgress()
-            }
-        })
-        delBtn.addEventListener("click",function(){
-            if(toggleBtn.textContent==="Undo"){
-                completedTopics--
-            }
-            totalTopics--
-            topics=topics.filter(
-                topic=> topic.name!==topicName
+    toggleBtn.addEventListener("click",function(){
+        if(toggleBtn.textContent==="Complete"){
+            topicName.style.textDecoration="line-through"
+            toggleBtn.textContent="Undo"
+            isCompleted=true
+            // topics=topics.filter(
+            //     topic=>topic.completed=!(topic.completed)
+            // )
+            const topicObj=topics.find(
+                topic=>topic.name===newTopic
             )
+            topicObj.completed=true
             localStorage.setItem("topics",JSON.stringify(topics))
-            newTopic.remove()
-            updateProgress()    
-        })
-
-        
-        topicList.appendChild(newTopic)
+            completedTopics++
+        }
+        else{
+            topicName.style.textDecoration="none"
+            toggleBtn.textContent="Complete"
+            isCompleted=false
+            const topicObj=topics.find(
+                topic=>topic.name===newTopic
+            )
+            topicObj.completed=false
+            localStorage.setItem("topics",JSON.stringify(topics))
+            completedTopics--
+        }
+        updateProgress()
+    })
 }
 addBtn.addEventListener("click",function(){
     if(topicInput.value.trim()!==""){
+        // totalTopics++
         const topicObj={
             name:topicInput.value,
             completed:false
@@ -85,9 +102,9 @@ addBtn.addEventListener("click",function(){
         topics.push(topicObj)
         localStorage.setItem("topics",JSON.stringify(topics))
         createTopic(topicInput.value)
+
         topicInput.value=""
-        totalTopics++
-        updateProgress()
+
     }
 })
 for(let topic of topics){
