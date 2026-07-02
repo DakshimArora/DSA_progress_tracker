@@ -9,6 +9,7 @@ const completed=document.getElementById("completed")
 const percentage=document.getElementById("percentage")
 const progress_bar_container=document.getElementById("progress_bar_container")
 const progress_bar=document.getElementById("progress_bar")
+const searchInput=document.getElementById("searchInput")
 let totalTopics=0
 let completedTopics=0
 let topics=JSON.parse(localStorage.getItem("topics")) || []
@@ -92,6 +93,19 @@ function createTopic(newTopic,isCompleted){
         updateProgress()
     })
 }
+searchInput.addEventListener("input",function(){
+    const searchText=searchInput.value.toLowerCase()
+    const allTopics=document.querySelectorAll("#topicList p")
+    for(let topic of allTopics){
+        if(topic.textContent.toLowerCase().includes(searchText)){
+            topic.style.display=""
+        }
+        else{
+            topic.style.display="none"
+        }
+    }
+
+})
 addBtn.addEventListener("click",function(){
     if(topicInput.value.trim()!==""){
         // totalTopics++

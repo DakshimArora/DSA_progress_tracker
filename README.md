@@ -12,6 +12,7 @@ A web application to track progress while solving Data Structures and Algorithms
   - Data persistence using local storage
   - Progress bar and percentage remain as it is even after refreshing the page
   - Completed status remains saved even after refreshing the page
+  - Search functionality
 
 ## Technologies used
   - HTML
@@ -24,10 +25,10 @@ A web application to track progress while solving Data Structures and Algorithms
   - Mark topic as completed when finished
   - Track the progress through progress-bar and percentage display
   - Delete topics that are no longer needed
+  - Search the topic without going through the entire list
   - Refresh the page without losing your progress
 
 ## Future improvements
-  - Search topics
   - Category-wise tracking
   - Dark mode persistence
   - Dashboard with detailed statistics
