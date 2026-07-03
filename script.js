@@ -1,7 +1,3 @@
-//progress bar, local storage
-
-
-
 const topicInput=document.getElementById("topicInput")
 const topicList=document.getElementById("topicList")
 const addBtn=document.getElementById("addBtn")
@@ -21,7 +17,7 @@ function updateProgress(){
         progress_bar.style.width="0%"
         return
     }
-    completed.textContent=`Completed: ${completedTopics}/${totalTopics}`
+    completed.textContent=`${completedTopics} of ${totalTopics} topics completed`
     percentage.textContent=`Percentage: ${Math.round((completedTopics/totalTopics)*100)} %`
     progress_bar.style.width=`${Math.round((completedTopics/totalTopics)*100)}%`
 }
@@ -29,6 +25,7 @@ function createTopic(newTopic,isCompleted){
     totalTopics++
     
     const topicName=document.createElement("p")
+    topicName.className="newPara";
     topicName.textContent=newTopic;
 
     const delBtn=document.createElement("button")

@@ -4,19 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>DSA PROGRESS TRACKER</h1>
-    <div id="progress_bar_container">
-        <div id="progress_bar"></div>
+    <div class="container">
+        <h1>DSA PROGRESS TRACKER</h1>
+        <div class="progress_container">
+            <div id="progress_bar_container">
+                <div id="progress_bar"></div>
+            </div>
+            <p id="completed">Completed 0/0</p>
+            <div id="percentage">Percentage: 0%</div>
+        </div>
+        <input id="searchInput" type="text" placeholder="searchTopic" name="search">
+        <div class="input">
+            <input id="topicInput" type="text" placeholder="Enter DSA topic" name="topic">
+            <button id="addBtn">Add topic</button> 
+        </div>
+        <div id="topicList"></div>
+        <script src="script.js"></script>
     </div>
-    <p id="completed">Completed 0/0</p>
-    <div id="percentage">Percentage: 0%</div>
-    <input id="searchInput" type="text" placeholder="searchTopic" name="search">
-    <input id="topicInput" type="text" placeholder="Enter DSA topic" name="topic">
-    <button id="addBtn">Add topic</button> 
-    <div id="topicList"></div>
-    <script src="script.js"></script>
 </body>
 </html>
