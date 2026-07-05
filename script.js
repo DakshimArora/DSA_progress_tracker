@@ -24,21 +24,30 @@ function updateProgress(){
 function createTopic(newTopic,isCompleted){
     totalTopics++
     
-    const topicName=document.createElement("p")
-    topicName.className="newPara";
+    const topicCard=document.createElement("div")
+    topicCard.className="newPara"
+
+    const topicName=document.createElement("span")
+    topicName.className="newTopic";
     topicName.textContent=newTopic;
 
     const delBtn=document.createElement("button")
     delBtn.textContent="Delete"
-    topicName.appendChild(delBtn)
     delBtn.className="delBtn"
-
-    const toggleBtn=document.createElement("button")
+     const toggleBtn=document.createElement("button")
     toggleBtn.className="toggleBtn"
     toggleBtn.textContent="Complete"
-    topicName.appendChild(toggleBtn)
 
-    topicList.appendChild(topicName)
+    const buttonContainer=document.createElement("div")
+    buttonContainer.className="buttonContainer"
+
+    buttonContainer.appendChild(delBtn)
+    buttonContainer.appendChild(toggleBtn)
+
+    topicCard.appendChild(topicName)
+    topicCard.appendChild(buttonContainer)
+    topicList.appendChild(topicCard)
+
     if(isCompleted){
         topicName.style.textDecoration="line-through"
         toggleBtn.textContent="Undo"
@@ -56,7 +65,7 @@ function createTopic(newTopic,isCompleted){
             topic=> topic.name!==newTopic
         )
         localStorage.setItem("topics",JSON.stringify(topics))
-        topicName.remove()
+        topicCard.remove()
         totalTopics--
         updateProgress()
     })
@@ -92,9 +101,10 @@ function createTopic(newTopic,isCompleted){
 }
 searchInput.addEventListener("input",function(){
     const searchText=searchInput.value.toLowerCase()
-    const allTopics=document.querySelectorAll("#topicList p")
+    const allTopics=document.querySelectorAll("#topicList .newPara")
     for(let topic of allTopics){
-        if(topic.textContent.toLowerCase().includes(searchText)){
+        const newTopic=topic.querySelector(".newTopic").textContent.toLowerCase();
+        if(newTopic.includes(searchText)){
             topic.style.display=""
         }
         else{

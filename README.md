@@ -1,24 +1,27 @@
 ## DSA PROGRESS TRACKER
 
-A web application to track progress while solving Data Structures and Algorithms (DSA) problems. Users can add topics, mark them as completed, track overall progress, and save their progress even after refreshing the page.
+A simple and interactive web application to track progress while solving Data Structures and Algorithms (DSA) problems. It helps users add topics, mark them as completed,search topics instantly and automatically saves progress using Local Storage.
 
 ## Features
   - Add new DSA topics
   - Mark topics as complete/undo
   - Delete topics
-  - View number of completed and total topics
-  - Dynamic progress percentage calculation
-  - Progress bas visualisation
+  - Search topics in real time
+  - Progress bar with completion percentage
   - Data persistence using local storage
-  - Progress bar and percentage remain as it is even after refreshing the page
-  - Completed status remains saved even after refreshing the page
-  - Search functionality
+  - Clean and responsive user interface
 
 ## Technologies used
   - HTML
   - CSS
   - JavaScript
   - Local storage API
+
+## How to run
+  - Clone the repository
+  - Open the project folder
+  - Open index.html in your browser
+  (No additional installation required)
 
 ## How it works
   - Enter a topic name and add it to the tracker
@@ -28,18 +31,16 @@ A web application to track progress while solving Data Structures and Algorithms
   - Search the topic without going through the entire list
   - Refresh the page without losing your progress
 
+## Screenshot
+  ![DSA Progress Tracker]
+  (assets/DSA Progress Tracker.png)
+
 ## Future improvements
-  - Category-wise tracking
+  - Category-wise progress tracking
   - Dark mode persistence
+  - Due dates for topics
+  - Edit existing topics
   - Dashboard with detailed statistics
   - Filtering complete and pending topics
-
-## Learning outcomes
-  - DOM manipulation
-  - Event listeners
-  - Dynamic element creation
-  - Local storage
-  - JSON.stringify() and JSON.parse()
-  - Arrays methods like find() and filter()
 
 ## Author: DAKSHIM ARORA
