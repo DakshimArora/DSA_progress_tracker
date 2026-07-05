@@ -32,8 +32,7 @@ A simple and interactive web application to track progress while solving Data St
   - Refresh the page without losing your progress
 
 ## Screenshot
-  ![DSA Progress Tracker]
-  (assets/DSA-progress-tracker.png)
+  ![DSA Progress Tracker](assets/DSA-progress-tracker.png)
 
 ## Future improvements
   - Category-wise progress tracking
